@@ -42,6 +42,6 @@ Speech_Emotion_Recognition_Random_Forest_Model/ml_app.py
 
 ```
 ## Output Image
-![Streamlit interface](./Output.png)
+![Streamlit interface](./images/Output.png)
  
 
