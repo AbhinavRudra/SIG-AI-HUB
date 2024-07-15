@@ -6,7 +6,7 @@ from sklearn.preprocessing import StandardScaler
 
 
 
-# Load pre-trained SVM model
+# Load pre-trained Random Forest model
 with open('sound_emotion.pkl', 'rb') as model_file:
     svm_model = pickle.load(model_file)
 
@@ -18,10 +18,6 @@ def noise(data):
 
 def stretch(data, rate=0.8):
     return librosa.effects.time_stretch(data, rate=rate)
-
-def shift(data):
-    shift_range = int(np.random.uniform(low=-5, high = 5)*1000)
-    return np.roll(data, shift_range)
 
 def pitch(data, sampling_rate, pitch_factor=0.7):
     return librosa.effects.pitch_shift(y=data, sr=sampling_rate, n_steps=int(pitch_factor))
@@ -53,9 +49,8 @@ def extract_features(data, sample_rate):
     contrast = np.mean(librosa.feature.spectral_contrast(S=stft, sr=sample_rate).T,axis=0)
     result = np.hstack((result, contrast))
 
-
-    return result
     
+    return result
     
     
 def get_features(path):
@@ -81,7 +76,7 @@ def get_features(path):
 
 
 st.title("Sound Emotion Recognition App")
-st.image('images used/img_emotion.png')
+st.image('images/img_emotion.png')
 
 audio_file = st.file_uploader("Upload an audio file", type=["wav", "mp3"])
 
@@ -92,14 +87,14 @@ if audio_file is not None:
     with open("uploaded_audio.wav", 'wb') as f:
         f.write(audio_file.getbuffer())
 
-        
+    #Scaling and predicting the new audio file    
     features = get_features("uploaded_audio.wav")
     features = scaler.fit_transform(features)  
     prediction = svm_model.predict(features)
     
     st.write(f"Prediction: {prediction[0]}")
 
-st.image('images used/Speech_Emotion_Recognition.webp')
+st.image('images/Speech_Emotion_Recognition.webp')
 
 
 
