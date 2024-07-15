@@ -15,7 +15,7 @@ pip install streamlit
 ## Usage
 
 ```python
-import foobar
+import streamlit as st
 
 # Adds Title in webpage
 st.title("Sound Emotion Recognition App")
