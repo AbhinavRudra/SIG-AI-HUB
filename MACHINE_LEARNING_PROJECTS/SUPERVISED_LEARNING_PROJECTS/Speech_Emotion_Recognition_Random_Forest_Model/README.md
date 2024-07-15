@@ -1,7 +1,7 @@
 # Sound Emotion Recognition
 
 ## Project Description
-A simple Sound Emotion Recognition classifier using ravsess dataset.The model used to build the classifier is Random Forest
+A simple Sound Emotion Recognition classifier using ravsess dataset.The model used to build the classifier is Random Forest,and it uses Streamlit UI for implimentation
 
 ## Streamlit UI 
 ## Installation
@@ -29,7 +29,7 @@ st.file_uploader("Upload an audio file", type=["wav", "mp3"])
 #Open file at the given location, with fixed audio types
 st.audio(audio_file, format='audio/wav')
 
-#Displays test(formatted)
+#Displays text(formatted)
 st.write(f"Prediction: {prediction[0]}")
 
 ```
